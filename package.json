@@ -1,14 +1,20 @@
 {
   "name": "vue-maker-plus",
-  "version": "0.0.1-beta.0",
+  "version": "0.0.1-beta.1",
   "description": "vue-maker-plus",
   "bin": {
     "vue-maker-plus": "./bin/vue-maker-plus.js"
+  },
+  "bugs": {
+    "url": "https://github.com/hm496/vue-maker-plus/issues"
   },
   "license": "MIT",
   "engines": {
     "node": ">=8"
   },
+  "keywords": [
+    "vue"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hm496/vue-maker-plus.git"
