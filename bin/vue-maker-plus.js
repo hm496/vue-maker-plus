@@ -77,6 +77,14 @@ function createService(context, entry, asLib) {
     ]
   });
   const command = args._[0];
+  const blackOptions = ['modern'];
+
+  blackOptions.forEach(option => {
+    if (args[option]) {
+      args[option] = false;
+      console.log(chalk.red(`Option --${option} is not available.`));
+    }
+  });
 
   const { context, entry } = resolveEntry();
   const asLib = args.target && args.target !== 'app';
@@ -91,11 +99,11 @@ function createService(context, entry, asLib) {
   // srchash
   if (command === 'build' && args.srchash !== undefined) {
     service.init(mode);
-    const CONFIG = service.resolveWebpackConfig();
-    if (CONFIG.output && CONFIG.output.path) {
+    const webpackConfig = service.resolveWebpackConfig();
+    if (webpackConfig.output && webpackConfig.output.path) {
       args.clean = false;
-      const newHash = await generateSrcHash(context, [CONFIG.output.path + '/**']);
-      const oldHash = getSrcHash(CONFIG.output.path);
+      const newHash = await generateSrcHash(context, [webpackConfig.output.path + '/**']);
+      const oldHash = getSrcHash(webpackConfig.output.path);
       if (oldHash === newHash && args.srchash) {
         console.log(chalk.red(`Compiled files are already up-to-date`));
 
@@ -103,8 +111,8 @@ function createService(context, entry, asLib) {
         process.exit(0);
         return;
       } else {
-        fs.emptyDirSync(CONFIG.output.path);
-        setSrcHash(CONFIG.output.path, newHash);
+        fs.emptyDirSync(webpackConfig.output.path);
+        setSrcHash(webpackConfig.output.path, newHash);
       }
     }
   }
