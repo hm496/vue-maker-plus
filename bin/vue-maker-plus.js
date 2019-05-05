@@ -101,9 +101,18 @@ function createService(context, entry, asLib) {
     service.init(mode);
     const webpackConfig = service.resolveWebpackConfig();
     if (webpackConfig.output && webpackConfig.output.path) {
+      if (webpackConfig.output.path === context) {
+        throw new Error(
+          `\n\nConfiguration Error: ` +
+          `Do not set output directory to project root.\n`
+        );
+      }
       args.clean = false;
       const newHash = await generateSrcHash(context, [webpackConfig.output.path + '/**']);
-      const oldHash = getSrcHash(webpackConfig.output.path);
+      let oldHash = '';
+      if (fs.pathExistsSync(path.join(webpackConfig.output.path, service.projectOptions.indexPath))) {
+        oldHash = getSrcHash(webpackConfig.output.path);
+      }
       if (oldHash === newHash && args.srchash) {
         console.log(chalk.red(`Compiled files are already up-to-date`));
 
