@@ -4,7 +4,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const chalk = require('chalk');
 const Service = require('@vue/cli-service');
-const { toPlugin, findExisting, generateSrcHash, getSrcHash, setSrcHash } = require('../lib/util');
+const { toPlugin, findExisting, generateSrcHash, getSrcHash, setSrcHash, getProjectPlugins } = require('../lib/util');
 
 const babelPlugin = toPlugin('@vue/cli-plugin-babel');
 const eslintPlugin = toPlugin('@vue/cli-plugin-eslint');
@@ -46,16 +46,18 @@ function resolveEntry(entry) {
 }
 
 function createService(context, entry, asLib) {
+  const projectPlugins = getProjectPlugins(context);
+
   return new Service(context, {
     projectOptions: {
       compiler: true,
-      lintOnSave: true
+      lintOnSave: process.env.NODE_ENV !== 'production'
     },
     plugins: [
       babelPlugin,
       eslintPlugin,
       globalConfigPlugin(context, entry, asLib)
-    ]
+    ].concat(projectPlugins)
   });
 }
 
