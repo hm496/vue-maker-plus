@@ -51,7 +51,7 @@ function createService(context, entry, asLib) {
   return new Service(context, {
     projectOptions: {
       compiler: true,
-      lintOnSave: process.env.NODE_ENV !== 'production'
+      lintOnSave: process.env.NODE_ENV !== 'production' && 'default'
     },
     plugins: [
       babelPlugin,
