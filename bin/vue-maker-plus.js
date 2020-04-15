@@ -49,10 +49,6 @@ function createService(context, entry, asLib) {
   const projectPlugins = getProjectPlugins(context);
 
   return new Service(context, {
-    projectOptions: {
-      compiler: true,
-      lintOnSave: process.env.NODE_ENV !== 'production' && 'default'
-    },
     plugins: [
       babelPlugin,
       eslintPlugin,
