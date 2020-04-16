@@ -4,7 +4,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const chalk = require('chalk');
 const Service = require('@vue/cli-service');
-const { toPlugin, findExisting, generateSrcHash, getSrcHash, setSrcHash, getProjectPlugins } = require('../lib/util');
+const { toPlugin, findExisting, generateSrcHash, getSrcHash, setSrcHash, getProjectPlugins, setProjectOptionsPlugin } = require('../lib/util');
 
 const babelPlugin = toPlugin('@vue/cli-plugin-babel');
 const eslintPlugin = toPlugin('@vue/cli-plugin-eslint');
@@ -12,7 +12,7 @@ const globalConfigPlugin = require('../lib/globalConfigPlugin');
 
 const context = process.cwd();
 
-function resolveEntry(entry) {
+function resolveEntry (entry) {
   entry = entry || findExisting(context, [
     'src/main.js',
     'src/index.js',
@@ -45,11 +45,12 @@ function resolveEntry(entry) {
   };
 }
 
-function createService(context, entry, asLib) {
+function createService (context, entry, asLib, args) {
   const projectPlugins = getProjectPlugins(context);
 
   return new Service(context, {
     plugins: [
+      setProjectOptionsPlugin(context, entry, asLib, args),
       babelPlugin,
       eslintPlugin,
       globalConfigPlugin(context, entry, asLib)
@@ -57,7 +58,7 @@ function createService(context, entry, asLib) {
   });
 }
 
-(async function() {
+(async function () {
   const rawArgv = process.argv.slice(2);
   const args = require('minimist')(rawArgv, {
     boolean: [
@@ -89,7 +90,7 @@ function createService(context, entry, asLib) {
   if (asLib) {
     args.entry = entry;
   }
-  const service = createService(context, entry, asLib);
+  const service = createService(context, entry, asLib, args);
 
   // mode
   const mode = args.mode || (command === 'build' && args.watch ? 'development' : service.modes[command]);
