@@ -12,7 +12,7 @@ const globalConfigPlugin = require('../lib/globalConfigPlugin');
 
 const context = process.cwd();
 
-function resolveEntry (entry) {
+function resolveEntry(entry) {
   entry = entry || findExisting(context, [
     'src/main.js',
     'src/index.js',
@@ -45,7 +45,7 @@ function resolveEntry (entry) {
   };
 }
 
-function createService (context, entry, asLib, args) {
+function createService(context, entry, asLib, args) {
   const projectPlugins = getProjectPlugins(context);
 
   return new Service(context, {
@@ -53,7 +53,7 @@ function createService (context, entry, asLib, args) {
       setProjectOptionsPlugin(context, entry, asLib, args),
       babelPlugin,
       eslintPlugin,
-      globalConfigPlugin(context, entry, asLib)
+      globalConfigPlugin(context, entry, asLib, args)
     ].concat(projectPlugins)
   });
 }
@@ -76,7 +76,7 @@ function createService (context, entry, asLib, args) {
     ]
   });
   const command = args._[0];
-  const blackOptions = ['modern'];
+  const blackOptions = [ 'modern' ];
 
   blackOptions.forEach(option => {
     if (args[option]) {
@@ -107,7 +107,7 @@ function createService (context, entry, asLib, args) {
         );
       }
       args.clean = false;
-      const newHash = await generateSrcHash(context, [webpackConfig.output.path + '/**']);
+      const newHash = await generateSrcHash(context, [ webpackConfig.output.path + '/**' ]);
       let oldHash = '';
       if (fs.pathExistsSync(path.join(webpackConfig.output.path, service.projectOptions.indexPath))) {
         oldHash = getSrcHash(webpackConfig.output.path);
