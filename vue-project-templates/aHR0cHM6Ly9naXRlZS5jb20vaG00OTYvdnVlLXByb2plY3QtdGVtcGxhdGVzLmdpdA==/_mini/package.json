@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "vue_create": "vue create aaaa",
+    "vue_maker_plus_create": "vue-maker-plus create aaaa",
     "serve": "vue-maker-plus serve",
     "build": "vue-maker-plus build",
     "lint": "vue-maker-plus lint --fix",
