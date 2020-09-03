@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "serve": "vue-maker-plus serve -o",
+    "serve": "vue-maker-plus serve",
     "build": "vue-maker-plus build",
     "lint": "vue-maker-plus lint --fix",
     "inspect": "vue-maker-plus inspect --mode development > inspect.js"

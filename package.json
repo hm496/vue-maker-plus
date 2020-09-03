@@ -36,6 +36,7 @@
     "read-pkg": "^5.2.0",
     "regenerator-runtime": "^0.13.5",
     "resolve": "^1.17.0",
+    "validate-npm-package-name": "^3.0.0",
     "vue": "^2.6.12",
     "vue-router": "^3.4.3",
     "vue-template-compiler": "^2.6.12",
