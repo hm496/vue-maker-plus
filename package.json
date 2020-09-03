@@ -1,6 +1,6 @@
 {
   "name": "vue-maker-plus",
-  "version": "0.0.5",
+  "version": "1.0.0-beta.1",
   "description": "vue-maker-plus",
   "bin": {
     "vue-maker-plus": "./bin/vue-maker-plus.js"
@@ -20,10 +20,10 @@
     "url": "git+https://github.com/hm496/vue-maker-plus.git"
   },
   "dependencies": {
-    "@vue/babel-preset-app": "~4.3.1",
-    "@vue/cli-plugin-babel": "~4.3.1",
-    "@vue/cli-plugin-eslint": "~4.3.1",
-    "@vue/cli-service": "~4.3.1",
+    "@vue/babel-preset-app": "~4.5.4",
+    "@vue/cli-plugin-babel": "~4.5.4",
+    "@vue/cli-plugin-eslint": "~4.5.4",
+    "@vue/cli-service": "~4.5.4",
     "babel-eslint": "^10.1.0",
     "chalk": "^3.0.0",
     "compression-webpack-plugin": "^3.1.0",
@@ -36,10 +36,10 @@
     "read-pkg": "^5.2.0",
     "regenerator-runtime": "^0.13.5",
     "resolve": "^1.17.0",
-    "vue": "^2.6.11",
-    "vue-router": "^3.1.6",
-    "vue-template-compiler": "^2.6.11",
-    "vuex": "^3.4.0",
+    "vue": "^2.6.12",
+    "vue-router": "^3.4.3",
+    "vue-template-compiler": "^2.6.12",
+    "vuex": "^3.5.1",
     "vuex-router-sync": "^5.0.0"
   }
 }

@@ -1,0 +1,17 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-maker-plus serve -o",
+    "build": "vue-maker-plus build",
+    "lint": "vue-maker-plus lint --fix",
+    "inspect": "vue-maker-plus inspect --mode development > inspect.js"
+  },
+  "dependencies": {},
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
