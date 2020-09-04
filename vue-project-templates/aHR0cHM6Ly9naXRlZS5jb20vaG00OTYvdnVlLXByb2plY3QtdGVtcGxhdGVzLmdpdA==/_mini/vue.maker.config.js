@@ -4,9 +4,13 @@ module.exports = (options) => {
     doNotCopyFiles: [
       'src/pkg'
     ],
-    // 优先级设置为默认值
-    data: {
-      projectName: '123XXXX'
+    // 设为默认值
+    options: {
+      templateSource: '',
+      description: '',
+      data: {
+        projectName: '123XXXX'
+      }
     }
   }
 }

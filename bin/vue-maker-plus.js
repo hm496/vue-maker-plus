@@ -6,10 +6,14 @@ const vueMakerPlus = require('../lib/vue-maker-plus');
 program
   .command('create <app-name>')
   .description('create a new project')
+  .option('-d, --default', 'skip prompts')
   .option('-g, --git [message]', 'Force git initialization with initial commit message')
   .option('-n, --no-git', 'Skip git initialization')
   .option('-f, --force', 'Overwrite target directory if it exists')
   .option('--merge', 'Merge target directory if it exists')
+  .option('-c, --clone', 'Use git clone when fetching remote preset')
+  .option('--no-clone', 'Do not use git clone when fetching remote preset')
+  .option('-sd, --searchDepth <depth>', 'Search vue.maker.config depth', 5)
   .action((name, cmd) => {
     const options = cleanArgs(cmd);
     // --git makes commander to default git to true
@@ -60,13 +64,13 @@ program
 
 program.parse(process.argv);
 
-function camelize(str) {
+function camelize (str) {
   return str.replace(/-(\w)/g, (_, c) => c ? c.toUpperCase() : '')
 }
 
 // commander passes the Command object itself as options,
 // extract only actual options into a fresh object.
-function cleanArgs(cmd) {
+function cleanArgs (cmd) {
   const args = {};
   cmd.options.forEach(o => {
     const key = camelize(o.long.replace(/^--/, ''))
