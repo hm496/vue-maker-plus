@@ -7,18 +7,16 @@ program
   .command('create <app-name>')
   .description('create a new project')
   .option('-d, --default', 'skip prompts')
-  .option('-g, --git [message]', 'Force git initialization with initial commit message')
-  .option('-n, --no-git', 'Skip git initialization')
   .option('-f, --force', 'Overwrite target directory if it exists')
   .option('--merge', 'Merge target directory if it exists')
   .option('-c, --clone', 'Use git clone when fetching remote preset')
   .option('--no-clone', 'Do not use git clone when fetching remote preset')
-  .option('-sd, --searchDepth <depth>', 'Search vue.maker.config depth', 5)
+  .option('--disable-config', 'Disable vue.maker.config')
   .action((name, cmd) => {
     const options = cleanArgs(cmd);
-    // --git makes commander to default git to true
-    if (process.argv.includes('-g') || process.argv.includes('--git')) {
-      options.forceGit = true
+
+    if (process.argv.includes('-c') || process.argv.includes('--clone')) {
+      options.clone = true
     }
     require('../lib/create/index')(name, options);
   });
@@ -39,8 +37,18 @@ program
   .option('-t, --target <target>', 'Build target (app | lib | wc | wc-async, default: app)')
   .option('-n, --name <name>', 'name for lib or web-component mode (default: entry filename)')
   .option('-d, --dest <dir>', 'output directory (default: dist)')
+  .option('--srchash', 'Generate source files hash and Hash diff')
+  .option('--no-srchash', 'Generate source files hash and Build forced')
   .action((entry, cmd) => {
-    vueMakerPlus(entry, cleanArgs(cmd));
+    const options = cleanArgs(cmd);
+
+    options.srchash = null;
+    if (process.argv.includes('--srchash')) {
+      options.srchash = true;
+    } else if (process.argv.includes('--no-srchash')) {
+      options.srchash = false;
+    }
+    vueMakerPlus(entry, options);
   });
 
 program
@@ -52,8 +60,8 @@ program
   .option('--rules', 'list all module rule names')
   .option('--plugins', 'list all plugin names')
   .option('-v --verbose', 'Show full function definitions in output')
-  .action((entry, cmd) => {
-    vueMakerPlus(entry, cleanArgs(cmd));
+  .action((paths, cmd) => {
+    vueMakerPlus(void 0, cleanArgs(cmd));
   });
 
 program
@@ -64,13 +72,13 @@ program
 
 program.parse(process.argv);
 
-function camelize (str) {
+function camelize(str) {
   return str.replace(/-(\w)/g, (_, c) => c ? c.toUpperCase() : '')
 }
 
 // commander passes the Command object itself as options,
 // extract only actual options into a fresh object.
-function cleanArgs (cmd) {
+function cleanArgs(cmd) {
   const args = {};
   cmd.options.forEach(o => {
     const key = camelize(o.long.replace(/^--/, ''))

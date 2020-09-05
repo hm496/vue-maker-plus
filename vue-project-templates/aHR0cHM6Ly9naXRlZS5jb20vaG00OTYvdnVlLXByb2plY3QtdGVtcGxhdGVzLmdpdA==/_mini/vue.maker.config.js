@@ -1,16 +1,16 @@
-module.exports = (options) => {
-  console.log('options', options);
+module.exports = () => {
   return {
-    doNotCopyFiles: [
-      'src/pkg'
-    ],
-    // 设为默认值
-    options: {
-      templateSource: '',
-      description: '',
-      data: {
-        projectName: '123XXXX'
-      }
-    }
+    cliOptions: {},
+    templateSource: '',
+    templateName: '',
+    templateData: {},
+    get prompts() {
+      return []
+    },
+    get doNotCopyFiles() {
+      return [
+        'pkg'
+      ]
+    },
   }
-}
+};
