@@ -32,6 +32,11 @@ program
   .option('-o, --open', 'Open browser')
   .option('-c, --copy', 'Copy local url to clipboard')
   .option('-p, --port <port>', 'Port used by the server (default: 8080 or next available port)')
+  .option('--mode <mode>', `specify env mode (default: development)`)
+  .option('--host <host>', `specify host`)
+  .option('--https', `use https`)
+  .option('--public <public network URL>', `specify the public network URL for the HMR client`)
+  .option('--skip-plugins <plugins>', `comma-separated list of plugin names to skip for this run`)
   .action((entry, cmd) => {
     vueMakerPlus(entry, cleanArgs(cmd));
   });
@@ -44,6 +49,18 @@ program
   .option('-d, --dest <dir>', 'output directory (default: dist)')
   .option('--srchash', 'Generate source files hash and Hash diff')
   .option('--no-srchash', 'Generate source files hash and Build forced')
+  .option('--mode <mode>', `specify env mode (default: production)`)
+  .option('--modern', `build app targeting modern browsers with auto fallback`)
+  .option('--no-unsafe-inline', `build app without introducing inline scripts`)
+  .option('--inline-vue', 'include the Vue module in the final bundle of library or web component target')
+  .option('--formats', `list of output formats for library builds`)
+  .option('--filename <filename>', `file name for output, only usable for 'lib' target (default: value of --name)`)
+  .option('--no-clean', `do not remove the dist directory before building the project`)
+  .option('--report', `generate report.html to help analyze bundle content`)
+  .option('--report-json', 'generate report.json to help analyze bundle content')
+  .option('--skip-plugins <plugins>', `comma-separated list of plugin names to skip for this run`)
+  .option('--watch', `watch for changes`)
+  .option('--stdin', `close when stdin ends`)
   .action((entry, cmd) => {
     const options = cleanArgs(cmd);
 
@@ -65,6 +82,7 @@ program
   .option('--rules', 'list all module rule names')
   .option('--plugins', 'list all plugin names')
   .option('-v --verbose', 'Show full function definitions in output')
+  .option('--skip-plugins <plugins>', 'comma-separated list of plugin names to skip for this run')
   .action((paths, cmd) => {
     vueMakerPlus(void 0, cleanArgs(cmd));
   });
