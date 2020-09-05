@@ -2,6 +2,11 @@
 
 const program = require('commander');
 const vueMakerPlus = require('../lib/vue-maker-plus');
+const readPkg = require('read-pkg');
+const path = require('path');
+
+const pkg = readPkg.sync({ cwd: path.join(__dirname, '../') });
+program.version(pkg.version);
 
 program
   .command('create <app-name>')
