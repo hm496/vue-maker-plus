@@ -16,7 +16,7 @@ program
   .option('--merge', 'Merge target directory if it exists')
   .option('-c, --clone', 'Use git clone when fetching remote preset')
   .option('--no-clone', 'Do not use git clone when fetching remote preset')
-  .option('--disable-config', 'Disable vue.maker.config')
+  .option('--disable-config', 'Disable user vue.maker.config')
   .action((name, cmd) => {
     const options = cleanArgs(cmd);
 
