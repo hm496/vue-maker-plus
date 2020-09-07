@@ -1,6 +1,6 @@
 {
   "name": "vue-maker-plus",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.5",
   "description": "vue-maker-plus",
   "bin": {
     "vue-maker-plus": "./bin/vue-maker-plus.js",
