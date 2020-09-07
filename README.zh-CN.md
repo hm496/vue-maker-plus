@@ -27,7 +27,7 @@ vmaker lint
 可参考`vue cli` [vue-cli-service官方文档](https://cli.vuejs.org/zh/guide/cli-service.html)   
 
 -----
-### `vmaker build`
+## `vmaker build`
 `vmaker build` 额外增加两个参数 `--srchash` 和 `--no-srchah`   
 
 1.使用`--srchash` 会计算每个源文件MD5值生成.srchash文件到打包目录   
@@ -36,7 +36,7 @@ vmaker lint
 但不进行对比上一次.srchash文件,每次都进行打包
 
 -----
-### `vmaker create` 创建新项目
+## `vmaker create` 创建新项目
 ```bash
 vmaker create some-project-name
 
@@ -67,9 +67,10 @@ templateSource中每个文件夹是一个模板
 > mini
 ```
 
-可以通过 `vue.maker.config.js` 设置模板逻辑   
-`vue.maker.config.js` 可以放在每个模板的目录中(template vue.maker.config)   
-也可以放在当前执行`vmaker create`命令的目录 `process.cwd()` 及当前目录的父级目录中(user vue.maker.config)      
+### 通过 `vue.maker.config.js` 设置模板逻辑   
+`vue.maker.config.js`文件   
+1. 可以放在每个模板的目录中(template vue.maker.config)    
+2. 也可以放在当前执行`vmaker create`命令的目录 `process.cwd()` 及当前目录的父级目录中(user vue.maker.config)      
 
 ```js
 // mini/vue.maker.config.js
