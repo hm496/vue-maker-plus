@@ -9,7 +9,7 @@ const pkg = readPkg.sync({ cwd: path.join(__dirname, '../') });
 program.version(pkg.version);
 
 program
-  .command('create <app-name>')
+  .command('create <project-name>')
   .description('create a new project')
   .option('-d, --default', 'skip prompts')
   .option('-f, --force', 'Overwrite target directory if it exists')
