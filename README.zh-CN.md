@@ -2,6 +2,15 @@
 
 forked from @vue/cli-service-global
 
+```bash
+npm i -g vue-maker-plus
+vmaker create my-project
+vmaker serve
+vmaker build
+vmaker inspect
+vmaker lint
+```
+
 命令行可以使用 `vue-maker-plus` 或者 `vmaker`
 ```bash
 vue-maker-plus --version
