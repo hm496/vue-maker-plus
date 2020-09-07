@@ -63,8 +63,8 @@ templateSource中每个文件夹是一个模板
 模板使用`ejs`语法     
 ```
 ? Please select a template: (Use arrow keys)
-> mini
 > full
+> mini
 ```
 
 可以通过 `vue.maker.config.js` 设置模板逻辑   
