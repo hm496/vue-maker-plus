@@ -1,6 +1,6 @@
 {
   "name": "vue-maker-plus",
-  "version": "1.0.0-beta.7",
+  "version": "1.0.0-beta.8",
   "description": "vue-maker-plus",
   "bin": {
     "vue-maker-plus": "./bin/vue-maker-plus.js",
@@ -21,10 +21,10 @@
     "url": "git+https://github.com/hm496/vue-maker-plus.git"
   },
   "dependencies": {
-    "@vue/babel-preset-app": "~4.5.4",
-    "@vue/cli-plugin-babel": "~4.5.4",
-    "@vue/cli-plugin-eslint": "~4.5.4",
-    "@vue/cli-service": "~4.5.4",
+    "@vue/babel-preset-app": "~4.5.7",
+    "@vue/cli-plugin-babel": "~4.5.7",
+    "@vue/cli-plugin-eslint": "~4.5.7",
+    "@vue/cli-service": "~4.5.7",
     "@vue/compiler-sfc": "^3.0.0",
     "babel-eslint": "~10.1.0",
     "chalk": "~3.0.0",
@@ -41,13 +41,13 @@
     "isbinaryfile": "~4.0.6",
     "log-symbols": "^2.2.0",
     "ora": "~3.4.0",
-    "postcss-flexbugs-fixes": "~4.2.0",
+    "postcss-flexbugs-fixes": "~4.2.1",
     "read-pkg": "~5.2.0",
     "regenerator-runtime": "~0.13.7",
     "resolve": "~1.17.0",
     "validate-npm-package-name": "~3.0.0",
     "vue": "~2.6.12",
-    "vue-router": "~3.4.3",
+    "vue-router": "~3.4.6",
     "vue-template-compiler": "~2.6.12",
     "vuex": "~3.5.1",
     "vuex-router-sync": "~5.0.0",

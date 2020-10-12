@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 const program = require('commander');
-const vueMakerPlus = require('../lib/vue-maker-plus');
 const readPkg = require('read-pkg');
 const path = require('path');
 
@@ -38,7 +37,7 @@ program
   .option('--public <public network URL>', `specify the public network URL for the HMR client`)
   .option('--skip-plugins <plugins>', `comma-separated list of plugin names to skip for this run`)
   .action((entry, cmd) => {
-    vueMakerPlus(entry, cleanArgs(cmd));
+    require('../lib/service')(entry, cleanArgs(cmd));
   });
 
 program
@@ -70,7 +69,7 @@ program
     } else if (process.argv.includes('--no-srchash')) {
       options.srchash = false;
     }
-    vueMakerPlus(entry, options);
+    require('../lib/service')(entry, options);
   });
 
 program
@@ -84,13 +83,13 @@ program
   .option('-v --verbose', 'Show full function definitions in output')
   .option('--skip-plugins <plugins>', 'comma-separated list of plugin names to skip for this run')
   .action((paths, cmd) => {
-    vueMakerPlus(void 0, cleanArgs(cmd));
+    require('../lib/service')(void 0, cleanArgs(cmd));
   });
 
 program
   .arguments('<command>')
   .action(() => {
-    vueMakerPlus();
+    require('../lib/service')();
   });
 
 program.parse(process.argv);
